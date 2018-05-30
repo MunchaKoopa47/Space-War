@@ -1,0 +1,5 @@
+Space (at title screen) = Start
+Arrow Keys = Move
+Space (while playing) = Shoot
+Escape = Quit
+R (at credits screen) = Restart
