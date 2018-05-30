@@ -31,19 +31,18 @@ FONT_LG = pygame.font.Font(None, 64)
 FONT_XL = pygame.font.Font("assets/fonts/SPACEBOY.ttf", 96)
 
 # Images
-background = pygame.image.load('assets/images/background.jpg')
+background = pygame.image.load('assets/images/background.png')
 background = pygame.transform.scale(background,(WIDTH, HEIGHT))
 ship_img = pygame.image.load('assets/images/player.png')
 laser_img = pygame.image.load('assets/images/laser.png')
-mob_img = pygame.image.load('assets/images/alien1.png')
+mobgrunt_img = pygame.image.load('assets/images/alien1.png')
+mobstrong_img = pygame.image.load('assets/images/alien2.png')
 bomb_img = pygame.image.load('assets/images/bomb.png')
 sprite_0 = pygame.image.load('assets/images/bomb.png')
 
 # Sounds
 EXPLOSION = pygame.mixer.Sound('assets/sounds/explosion.ogg')
 INTRO = pygame.mixer.Sound("assets/sounds/intro.ogg")
-SONG = pygame.mixer.Sound("assets/sounds/playing.ogg")
-CREDITS = pygame.mixer.Sound("assets/sounds/credits.ogg")
 
 # Stages
 START = 0
@@ -124,7 +123,7 @@ class Laser(pygame.sprite.Sprite):
         if self.rect.bottom < 0:
             self.kill()
     
-class Mob(pygame.sprite.Sprite):
+class Mobgrunt(pygame.sprite.Sprite):
     def __init__(self, x, y, image):
         super().__init__()
 
@@ -144,6 +143,35 @@ class Mob(pygame.sprite.Sprite):
         hit_list = pygame.sprite.spritecollide(self, lasers, True, pygame.sprite.collide_mask)
 
         if len(hit_list) > 0:
+            #EXPLOSION.play()
+            player.score += 1
+            self.kill()
+
+class Mobstrong(pygame.sprite.Sprite):
+    def __init__(self, x, y, image):
+        super().__init__()
+
+        self.image = image
+        self.mask = pygame.mask.from_surface(self.image)
+        self.rect = self.image.get_rect()
+        self.rect.x = x
+        self.rect.y = y
+
+        self.shield = 3
+
+    def drop_bomb(self):
+        bomb = Bomb(bomb_img)
+        bomb.rect.centerx = self.rect.centerx
+        bomb.rect.centery = self.rect.bottom
+        bombs.add(bomb)
+    
+    def update(self, lasers, player):
+        hit_list = pygame.sprite.spritecollide(self, lasers, True, pygame.sprite.collide_mask)
+
+        if len(hit_list) > 0:
+            self.shield -= 1
+
+        if self.shield == 0:
             #EXPLOSION.play()
             player.score += 1
             self.kill()
@@ -228,39 +256,39 @@ def setup():
     
     #Make game objects
     ship = Ship(384, 536, ship_img)
-    mob1 = Mob(100, 64, mob_img)
-    mob2 = Mob(200, 64, mob_img)
-    mob3 = Mob(300, 64, mob_img)
-    mob4 = Mob(400, 64, mob_img)
-    mob5 = Mob(500, 64, mob_img)
-    mob6 = Mob(600, 64, mob_img)
-    mob7 = Mob(700, 64, mob_img)
-    mob8 = Mob(800, 64, mob_img)
-    mob9 = Mob(900, 64, mob_img)
-    mob10 = Mob(1000, 64, mob_img)
-    mob11 = Mob(1100, 64, mob_img)
-    mob12 = Mob(100, 128, mob_img)
-    mob13 = Mob(200, 128, mob_img)
-    mob14 = Mob(300, 128, mob_img)
-    mob15 = Mob(400, 128, mob_img)
-    mob16 = Mob(500, 128, mob_img)
-    mob17 = Mob(600, 128, mob_img)
-    mob18 = Mob(700, 128, mob_img)
-    mob19 = Mob(800, 128, mob_img)
-    mob20 = Mob(900, 128, mob_img)
-    mob21 = Mob(1000, 128, mob_img)
-    mob22 = Mob(1100, 128, mob_img)
-    mob23 = Mob(100, 192, mob_img)
-    mob24 = Mob(200, 192, mob_img)
-    mob25 = Mob(300, 192, mob_img)
-    mob26 = Mob(400, 192, mob_img)
-    mob27 = Mob(500, 192, mob_img)
-    mob28 = Mob(600, 192, mob_img)
-    mob29 = Mob(700, 192, mob_img)
-    mob30 = Mob(800, 192, mob_img)
-    mob31 = Mob(900, 192, mob_img)
-    mob32 = Mob(1000, 192, mob_img)
-    mob33 = Mob(1100, 192, mob_img)
+    mob23 = Mobstrong(100, 64, mobstrong_img)
+    mob24 = Mobstrong(200, 64, mobstrong_img)
+    mob25 = Mobstrong(300, 64, mobstrong_img)
+    mob26 = Mobstrong(400, 64, mobstrong_img)
+    mob27 = Mobstrong(500, 64, mobstrong_img)
+    mob28 = Mobstrong(600, 64, mobstrong_img)
+    mob29 = Mobstrong(700, 64, mobstrong_img)
+    mob30 = Mobstrong(800, 64, mobstrong_img)
+    mob31 = Mobstrong(900, 64, mobstrong_img)
+    mob32 = Mobstrong(1000, 64, mobstrong_img)
+    mob33 = Mobstrong(1100, 64, mobstrong_img)
+    mob1 = Mobgrunt(100, 128, mobgrunt_img)
+    mob2 = Mobgrunt(200, 128, mobgrunt_img)
+    mob3 = Mobgrunt(300, 128, mobgrunt_img)
+    mob4 = Mobgrunt(400, 128, mobgrunt_img)
+    mob5 = Mobgrunt(500, 128, mobgrunt_img)
+    mob6 = Mobgrunt(600, 128, mobgrunt_img)
+    mob7 = Mobgrunt(700, 128, mobgrunt_img)
+    mob8 = Mobgrunt(800, 128, mobgrunt_img)
+    mob9 = Mobgrunt(900, 128, mobgrunt_img)
+    mob10 = Mobgrunt(1000, 128, mobgrunt_img)
+    mob11 = Mobgrunt(1100, 128, mobgrunt_img)
+    mob12 = Mobgrunt(100, 192, mobgrunt_img)
+    mob13 = Mobgrunt(200, 192, mobgrunt_img)
+    mob14 = Mobgrunt(300, 192, mobgrunt_img)
+    mob15 = Mobgrunt(400, 192, mobgrunt_img)
+    mob16 = Mobgrunt(500, 192, mobgrunt_img)
+    mob17 = Mobgrunt(600, 192, mobgrunt_img)
+    mob18 = Mobgrunt(700, 192, mobgrunt_img)
+    mob19 = Mobgrunt(800, 192, mobgrunt_img)
+    mob20 = Mobgrunt(900, 192, mobgrunt_img)
+    mob21 = Mobgrunt(1000, 192, mobgrunt_img)
+    mob22 = Mobgrunt(1100, 192, mobgrunt_img)
 
     #intro = Background(0, 0, sprite_0, sprite_1, sprite_2, sprite_3, sprite_4, sprite_5)
 
@@ -283,61 +311,10 @@ def setup():
 
     # set stage
     stage = START
-
-def level_up():
-    mob1 = Mob(100, 64, mob_img)
-    mob2 = Mob(200, 64, mob_img)
-    mob3 = Mob(300, 64, mob_img)
-    mob4 = Mob(400, 64, mob_img)
-    mob5 = Mob(500, 64, mob_img)
-    mob6 = Mob(600, 64, mob_img)
-    mob7 = Mob(700, 64, mob_img)
-    mob8 = Mob(800, 64, mob_img)
-    mob9 = Mob(900, 64, mob_img)
-    mob10 = Mob(1000, 64, mob_img)
-    mob11 = Mob(1100, 64, mob_img)
-    mob12 = Mob(100, 128, mob_img)
-    mob13 = Mob(200, 128, mob_img)
-    mob14 = Mob(300, 128, mob_img)
-    mob15 = Mob(400, 128, mob_img)
-    mob16 = Mob(500, 128, mob_img)
-    mob17 = Mob(600, 128, mob_img)
-    mob18 = Mob(700, 128, mob_img)
-    mob19 = Mob(800, 128, mob_img)
-    mob20 = Mob(900, 128, mob_img)
-    mob21 = Mob(1000, 128, mob_img)
-    mob22 = Mob(1100, 128, mob_img)
-    mob23 = Mob(100, 192, mob_img)
-    mob24 = Mob(200, 192, mob_img)
-    mob25 = Mob(300, 192, mob_img)
-    mob26 = Mob(400, 192, mob_img)
-    mob27 = Mob(500, 192, mob_img)
-    mob28 = Mob(600, 192, mob_img)
-    mob29 = Mob(700, 192, mob_img)
-    mob30 = Mob(800, 192, mob_img)
-    mob31 = Mob(900, 192, mob_img)
-    mob32 = Mob(1000, 192, mob_img)
-    mob33 = Mob(1100, 192, mob_img)
-
-    lasers = pygame.sprite.Group()
-
-    mobs = pygame.sprite.Group()
-    mobs.add(mob1, mob2, mob3, mob4, mob5, mob6, mob7, mob8, mob9, mob10, mob11
-            , mob12, mob13, mob14, mob15, mob16, mob17, mob18, mob19, mob20, mob21
-            , mob22, mob23, mob24, mob25, mob26, mob27, mob28, mob29, mob30, mob31
-            , mob32, mob33)
-
-    bombs = pygame.sprite.Group()
-
-
-    fleet = Fleet(mobs)
-
-    # set stage
-    stage = PLAYING
+    INTRO.play()
 
 # Game loop
 setup()
-level_up()
 
 done = False
 
@@ -374,12 +351,6 @@ while not done:
         elif len(mobs) == 0:
             stage = END
             CREDITS.play()
-
-    if stage == START:
-        INTRO.play()
-
-    if stage == PLAYING:
-        SONG.play()
 
     # Game logic (Check for collisions, update points, etc.)
     if stage == PLAYING:
