@@ -33,6 +33,8 @@ FONT_XL = pygame.font.Font("assets/fonts/SPACEBOY.ttf", 96)
 # Images
 background = pygame.image.load('assets/images/background.png')
 background = pygame.transform.scale(background,(WIDTH, HEIGHT))
+title = pygame.image.load('assets/images/title.png')
+title = pygame.transform.scale(title,(WIDTH, HEIGHT))
 ship_img = pygame.image.load('assets/images/player.png')
 laser_img = pygame.image.load('assets/images/laser.png')
 mobgrunt_img = pygame.image.load('assets/images/alien1.png')
@@ -225,9 +227,9 @@ class Fleet:
 
 # Game helper functions
 def show_title_screen():
-    title_text = FONT_XL.render("War on Kirb", 1, WHITE)
-    screen.blit(title_text, [100, 204])
-
+    screen.blit(title, (0, 0))
+    title_text = FONT_XL.render("Kirbyga", 1, BLACK)
+    screen.blit(title_text, [300, 100])
 def show_stats(player):
     score_text = FONT_MD.render(str(player.score), 1, WHITE)
     screen.blit(score_text, [32, 32])
