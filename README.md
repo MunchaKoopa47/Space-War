@@ -1,37 +1,15 @@
-## Welcome to GitHub Pages
+#Kirbyga
 
-You can use the [editor on GitHub](https://github.com/MunchaKoopa47/Space-War/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+##Backstory
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Chef Kawasaki has been looking for apples for is apple pie. When he finally finds them, he realizes that they belong to Whispy Woods! Help Kawasaki survive the attack by whispy woods. Use your frying pan to launch projectiles at the apples before they hit you!
 
-### Markdown
+##Controls
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+Press space on the start menu to begin the game. When playing, space will shoot and the arrow keys are for moving. You can move past the side of the screen and warp to the other side. Dodge seeds shot out by the apples and return fire. If you get hit once, you die. Green apples take two hits and red ones take on but they are both worth one point. You can see your score at the top left corner. If you die or kill all the apples, the game will end and you can press "R" to restart. You can also press Esc at any time to quit.
 
-```markdown
-Syntax highlighted code block
+![alt text](https://raw.githubusercontent.com/MunchaKoopa47/Space-War/master/title.png "Logo Title Text 1")
 
-# Header 1
-## Header 2
-### Header 3
+![alt text](https://raw.githubusercontent.com/MunchaKoopa47/Space-War/master/playing.png "Logo Title Text 1")
 
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/MunchaKoopa47/Space-War/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+![alt text](https://raw.githubusercontent.com/MunchaKoopa47/Space-War/master/credits.png "Logo Title Text 1")
