@@ -10,8 +10,6 @@ Press space on the start menu to begin the game. When playing, space will shoot 
 
 ![alt text](https://raw.githubusercontent.com/MunchaKoopa47/Space-War/master/assets/Untitled.png "Logo Title Text 1")
 
-![alt text](https://raw.githubusercontent.com/MunchaKoopa47/Space-War/master/playing.png "Logo Title Text 1")
+![alt text](https://raw.githubusercontent.com/MunchaKoopa47/Space-War/master/assets/assets/Untitled2.png "Logo Title Text 1")
 
-![alt text](https://raw.githubusercontent.com/MunchaKoopa47/Space-War/master/credits.png "Logo Title Text 1")
-
-[Play the game here:](https://github.com/MunchaKoopa47/Space-War/releases)
+[Play the game here](https://github.com/MunchaKoopa47/Space-War/releases)
