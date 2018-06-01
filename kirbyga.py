@@ -50,25 +50,6 @@ PLAYING = 1
 END = 2
 
 # Game classes
-#class Background(pygame.sprite.Sprite):
-    #def __init__(self, x, y, image, image2, image3, image4):
-        #super().__init__()
-        #self.ticks = 0
-        #self.image = image
-        #self.image2 = image2
-        #self.image3 = image3
-        #self.image4 = image4
-        #self.image5 = image5
-        #self.rect = self.image.get_rect()
-        #self.rect.x = x
-        #self.rect.y = y
-        
-
-    #def update(self):
-        #self.ticks += 1
-        #if self.ticks %98 == 0:
-            #self.image, self.image2, self.image3, self.image4, self.image5 = self.image2, self.image3, self.image4, self.image5, self.image
-
 class Ship(pygame.sprite.Sprite):
     def __init__(self, x, y, image):
         super().__init__()
@@ -78,7 +59,7 @@ class Ship(pygame.sprite.Sprite):
         self.rect.x = x
         self.rect.y = y
         
-        self.speed = 3
+        self.speed = 5
         self.shield = 1
 
     def move_left(self):
@@ -104,9 +85,13 @@ class Ship(pygame.sprite.Sprite):
             self.shield = 0
 
         if self.shield == 0:
-            #EXPLOSION.play()
+            EXPLOSION.play()
             self.kill()
-            
+
+        if self.rect.right < 0:
+            self.rect.left = WIDTH
+        if self.rect.left > WIDTH:
+            self.rect.right = 0
 class Laser(pygame.sprite.Sprite):
     
     def __init__(self, image):
@@ -143,7 +128,7 @@ class Mobgrunt(pygame.sprite.Sprite):
         hit_list = pygame.sprite.spritecollide(self, lasers, True, pygame.sprite.collide_mask)
 
         if len(hit_list) > 0:
-            #EXPLOSION.play()
+            EXPLOSION.play()
             player.score += 1
             self.kill()
 
@@ -172,7 +157,7 @@ class Mobstrong(pygame.sprite.Sprite):
             self.shield -= 1
 
         if self.shield == 0:
-            #EXPLOSION.play()
+            EXPLOSION.play()
             player.score += 1
             self.kill()
 
@@ -185,7 +170,7 @@ class Bomb(pygame.sprite.Sprite):
         self.image = image
         self.rect = self.image.get_rect()
         
-        self.speed = 3
+        self.speed = 10
 
     def update(self):
         self.rect.y += self.speed
@@ -197,7 +182,7 @@ class Fleet:
         self.mobs = mobs
         self.moving_right = True
         self.speed = 1
-        self.bomb_rate = 60
+        self.bomb_rate = 10
 
     def move(self):
         reverse = False
@@ -347,10 +332,8 @@ while not done:
 
         elif len(player) == 0:
             stage = END
-            CREDITS.play()
         elif len(mobs) == 0:
             stage = END
-            CREDITS.play()
 
     # Game logic (Check for collisions, update points, etc.)
     if stage == PLAYING:
